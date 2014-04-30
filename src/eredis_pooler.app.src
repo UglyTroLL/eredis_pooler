@@ -1,0 +1,13 @@
+{application, eredis_pooler,
+ [
+  {description, ""},
+  {vsn, "0.727"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {included_applications, [pooler]},
+  {mod, { eredis_pooler_app, []}},
+  {env, []}
+ ]}.
