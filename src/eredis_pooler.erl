@@ -16,7 +16,7 @@
 -export([q/2, q/3]).
 
 start() ->
-  application:ensure_all_started(eredis_pooler).
+  application:start(eredis_pooler).
 
 stop() ->
   application:stop(eredis_pooler).
