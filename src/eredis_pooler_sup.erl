@@ -28,6 +28,11 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-  PoolerSup = {pooler_sup, {pooler_sup, start_link, []},
-    permanent, infinity, supervisor, [pooler_sup]},
-  {ok, {{one_for_one, 5, 10}, [PoolerSup]}}.
+  case whereis(pooler_sup) of
+    undefined ->
+      PoolerSup = {pooler_sup, {pooler_sup, start_link, []},
+        permanent, infinity, supervisor, [pooler_sup]},
+      {ok, {{one_for_one, 5, 10}, [PoolerSup]}};
+    _ ->
+      ignore
+  end.

@@ -11,7 +11,7 @@
 
 start(_StartType, _StartArgs) ->
   {ok, PoolConfigs} = application:get_env(eredis_pooler, pools),
-  application:start(pooler),
+  eredis_pooler_sup:start_link(),
   [pooler:new_pool(PoolConfig) || PoolConfig <- PoolConfigs],
   {ok, self()}.
 
